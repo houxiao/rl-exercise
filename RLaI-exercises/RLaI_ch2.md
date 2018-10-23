@@ -18,7 +18,7 @@
 
 2.4
 
-​	$$ Q_{n+1}=Q_1* \prod_{i=1}^{n}(1- \alpha_i(a))+\sum_{i=1}^{n}( \alpha_i R_i*\prod_{j=i+1}^{n}(1-\alpha_j)) $$	![derivation_process](2.4.jpg)
+​	$$ Q_{n+1}=Q_1* \prod_{i=1}^{n}(1- \alpha_i(a))+\sum_{i=1}^{n}( \alpha_i R_i*\prod_{j=i+1}^{n}(1-\alpha_j)) $$	![derivation_process](res/2.4.jpg)
 
 2.5
 

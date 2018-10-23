@@ -64,7 +64,7 @@ continuing case, $G_t=-\sum_{k\in K}\gamma^{k-t}$, where K is the set of times w
 
 ​	$$ v_\pi(center)=\frac{1}{4}*0.9*\sum_{s'}v_\pi(s')=0.25*0.9*(2.3+0.4-0.4+0.7)=0.675 $$
 
-3.13	![3.13](3.13.jpg)
+3.13	![3.13](res/3.13.jpg)
 
 3.14
 
