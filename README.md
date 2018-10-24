@@ -3,3 +3,5 @@ This repository may contains material(notes, exercises, codes) to record my lear
 So far:
 - [ ] RLaI ch2 exercise
 - [x] RLaI ch3 exercise
+- [x] RLaI ch4 exercise
+- [x] RLaI ch5 exercise
