@@ -25,6 +25,7 @@ class Maze(tk.Tk):
         super(Maze, self).__init__()
         self.action_space = ['n', 's', 'w', 'e']
         self.n_actions = len(self.action_space)
+
         self.geometry(f'{MAZE_H * UNIT}x{MAZE_W * UNIT}')
         self._build_maze()
 

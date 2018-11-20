@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 
 
-class QLearningTable(object):
+class SarsaTable(object):
     def __init__(self, actions, alpha=0.01, gamma=0.9, epsilon=0.1):
         self.actions = actions
         self.alpha = alpha
@@ -22,13 +22,13 @@ class QLearningTable(object):
             action = np.random.choice(state_action[state_action == np.max(state_action)].index)
         return action
 
-    def train(self, s, a, r, s_):
+    def train(self, s, a, r, s_, a_):
         self.check_state_exist(s_)
         q_predict = self.q_table.loc[s, a]
         if s_ != 'termianl':
             q_target = r
         else:
-            q_target = r + self.gamma * self.q_table.loc[s_, :].max()
+            q_target = r + self.gamma * self.q_table.loc[s_, a_]
         self.q_table.loc[s, a] += self.alpha * (q_target - q_predict)
 
     def check_state_exist(self, s):
