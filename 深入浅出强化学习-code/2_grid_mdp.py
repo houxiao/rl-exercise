@@ -1,3 +1,43 @@
+# 1. 如何注册自己写的env到gym： 将xx.py文件复制到环境中的gym/envs/classic_control文件夹中
+# 2. 在__init__.py 最后加上 from gym.envs.classic_control.xx_env import XxEnv
+# 3. 在envs里的__init__.py中加上：
+#         register(
+#             id='GridWorld-v0',
+#             entry_point='gym.envs.classic_control:GridEnv',
+#             max_episode_steps=200,
+#             reward_threshold=100.0,
+#             )
+
+"""
+metadata = {
+        'render.modes': ['human', 'rgb_array'],
+        'video.frames_per_second': 2
+    }
+
+Env 初始变量：
+    states 状态空间（list）
+    terminate_states 终止状态（dict or list）
+    actions 动作空间（list）
+    rewards 回报（dict）
+    t 状态转移 （dict）
+
+    gamma： discount
+    viewer=None
+    state=None
+
+Env 提供函数：
+    reset()
+    step()
+    render()
+    close()
+
+    seeding()
+        from gym.utils import seeding
+        def seed(self, seed=None):
+            self.np_random, seed = seeding.np_random(seed)
+            return [seed]
+"""
+
 import logging
 import numpy
 import random
@@ -30,7 +70,7 @@ class GridEnv(gym.Env):
         self.rewards['3_s'] = 1.0
         self.rewards['5_s'] = -1.0
 
-        self.t = dict();  # 状态转移的数据格式为字典
+        self.t = dict()  # 状态转移的数据格式为字典
         self.t['1_s'] = 6
         self.t['1_e'] = 2
         self.t['2_w'] = 1
@@ -65,7 +105,7 @@ class GridEnv(gym.Env):
     def setAction(self, s):
         self.state = s
 
-    def _step(self, action):
+    def step(self, action):
         # 系统当前状态
         state = self.state
         if state in self.terminate_states:
@@ -91,7 +131,7 @@ class GridEnv(gym.Env):
 
         return next_state, r, is_terminal, {}
 
-    def _reset(self):
+    def reset(self):
         self.state = self.states[int(random.random() * len(self.states))]
         return self.state
 
@@ -173,3 +213,14 @@ class GridEnv(gym.Env):
         self.robotrans.set_translation(self.x[self.state - 1], self.y[self.state - 1])
 
         return self.viewer.render(return_rgb_array=mode == 'rgb_array')
+
+    def close(self):
+        if self.viewer:
+            self.viewer.close()
+            self.viewer = None
+
+if __name__ == '__main__':
+    env = gym.make('GridWorld-v0')
+    env.reset()
+    while 1:
+        env.render()

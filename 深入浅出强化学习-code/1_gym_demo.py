@@ -1,3 +1,10 @@
+# import gym
+# env = gym.make('CartPole-v0')
+# env.reset()
+# env.render()
+# env.close()
+
+
 import gym
 env = gym.make('CartPole-v0')
 for i_episode in range(20):
